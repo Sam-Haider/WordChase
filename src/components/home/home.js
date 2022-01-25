@@ -12,14 +12,9 @@ const updateWord = letters => {
         })
         return isMatch;
     })
-    if(matches.length === 0) {
-        return 'gameover'
-    }
 
     const newWord = matches[Math.floor(Math.random() * matches?.length)];
     const newLetter = newWord[letters.length]
-    console.log('newletter', newLetter);
-    console.log('newWord', newWord);
     return {newWord, newLetter};
 }
 
@@ -30,10 +25,11 @@ export const Home = () => {
     const handleClick = e => {
         const ltr = e.target.value.toLowerCase();
         const {newLetter} = updateWord([...letters, ltr])
-        if(!newLetter){
-            alert('you failed');
-        }
         setLetters([...letters, ltr, newLetter])
+    }
+
+    if(letters.length === 7) {
+        alert('you win');
     }
 
     return (
