@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { words } from '../../wordList';
 import { Keyboard } from '../keyboard/keyboard';
 
-const updateWord = letters => {
-    const matches = words.filter(word => {
+const updateWord = (letters, gameWords) => {
+    const matches = gameWords.filter(word => {
         let isMatch = true;
         letters.forEach((letter, index) => {
             if(word[index] !== letter){
@@ -19,20 +19,22 @@ const updateWord = letters => {
 }
 
 export const Home = () => {
-
     const [letters, setLetters] = useState([]);
     const [gameOver, setGameOver] = useState(false);
     console.log('game over', gameOver);
+    const gameWords = words.filter(word => {
+        return word.length === 5;
+    })
     const handleClick = e => {
         const ltr = e.target.value.toLowerCase();
-        const {newWord, newLetter} = updateWord([...letters, ltr])
+        const {newWord, newLetter} = updateWord([...letters, ltr], gameWords)
         console.log('new word is', newWord);
         console.log('new letter is', newLetter);
         if(!newWord) {
             setGameOver(true);
             return;
         } else {
-            if(letters.length === 6) {
+            if(letters.length === 4) {
                 setLetters([...letters, ltr])
             } else {
                 setLetters([...letters, ltr, newLetter])
@@ -48,7 +50,7 @@ export const Home = () => {
 
     useEffect(() => {
         console.log('letters.length is', letters.length)
-        if(letters.length === 7) {
+        if(letters.length === 5) {
             alert('you win');
         }
     })
@@ -67,8 +69,6 @@ export const Home = () => {
                 <div className="tile">{letters[2]}</div>
                 <div className="tile">{letters[3]}</div>
                 <div className="tile">{letters[4]}</div>
-                <div className="tile">{letters[5]}</div>
-                <div className="tile">{letters[6]}</div>
             </div>
             <Keyboard gameOver={gameOver} handleClick={handleClick}/>
             {gameOver && <button className="game-over-btn" onClick={handlePlayAgain}>Play Again</button>}
