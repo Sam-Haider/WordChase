@@ -17,11 +17,12 @@ code {
   width: 100%;
   justify-content: center;
   margin-top: 10px;
+  gap: 10px;
 }
 .tile {
   width: 40px;
   height: 40px;
-  border: 1px solid green;
+  border: 1px solid rgb(13, 73, 202);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState, useReducer } from 'react';
-import { words } from '../../words';
+import React, { useEffect, useState } from 'react';
+import { words } from '../../wordList';
 import { Keyboard } from '../keyboard/keyboard';
 
 const updateWord = letters => {
@@ -14,23 +14,50 @@ const updateWord = letters => {
     })
 
     const newWord = matches[Math.floor(Math.random() * matches?.length)];
-    const newLetter = newWord[letters.length]
+    const newLetter = newWord && newWord[letters.length]
     return {newWord, newLetter};
 }
 
 export const Home = () => {
 
     const [letters, setLetters] = useState([]);
-
+    const [gameOver, setGameOver] = useState(false);
+    console.log('game over', gameOver);
     const handleClick = e => {
         const ltr = e.target.value.toLowerCase();
-        const {newLetter} = updateWord([...letters, ltr])
-        setLetters([...letters, ltr, newLetter])
+        const {newWord, newLetter} = updateWord([...letters, ltr])
+        console.log('new word is', newWord);
+        console.log('new letter is', newLetter);
+        if(!newWord) {
+            setGameOver(true);
+            return;
+        } else {
+            if(letters.length === 6) {
+                setLetters([...letters, ltr])
+            } else {
+                setLetters([...letters, ltr, newLetter])
+            }
+            
+        }
     }
 
-    if(letters.length === 7) {
-        alert('you win');
+    const handlePlayAgain = () => {
+        setGameOver(false);
+        setLetters([]);
     }
+
+    useEffect(() => {
+        console.log('letters.length is', letters.length)
+        if(letters.length === 7) {
+            alert('you win');
+        }
+    })
+
+    useEffect(() => {
+        if(gameOver) {
+            alert('you lost');
+        }
+    })
 
     return (
         <div>
@@ -43,7 +70,8 @@ export const Home = () => {
                 <div className="tile">{letters[5]}</div>
                 <div className="tile">{letters[6]}</div>
             </div>
-          <Keyboard handleClick={handleClick}/>
+          <Keyboard gameOver={gameOver} handleClick={handleClick}/>
+          {gameOver && <button onClick={handlePlayAgain}>Play Again</button>}
         </div>
       );
 }
