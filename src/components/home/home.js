@@ -60,7 +60,7 @@ export const Home = () => {
     })
 
     return (
-        <div>
+        <div className='game-container'>
             <div className='tile-container'>
                 <div className="tile">{letters[0]}</div>
                 <div className="tile">{letters[1]}</div>
@@ -70,8 +70,8 @@ export const Home = () => {
                 <div className="tile">{letters[5]}</div>
                 <div className="tile">{letters[6]}</div>
             </div>
-          <Keyboard gameOver={gameOver} handleClick={handleClick}/>
-          {gameOver && <button onClick={handlePlayAgain}>Play Again</button>}
+            <Keyboard gameOver={gameOver} handleClick={handleClick}/>
+            {gameOver && <button className="game-over-btn" onClick={handlePlayAgain}>Play Again</button>}
         </div>
       );
 }

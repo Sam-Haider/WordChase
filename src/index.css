@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .tile-container {
   display: flex;
   width: 100%;
@@ -19,6 +26,7 @@ code {
   margin-top: 10px;
   gap: 10px;
 }
+
 .tile {
   width: 40px;
   height: 40px;
@@ -27,6 +35,7 @@ code {
   justify-content: center;
   align-items: center;
 }
+
 .keyboard-container {
   width: 100%;
   display: flex;
@@ -36,4 +45,9 @@ code {
 
 .keyboard {
   width: 350px;
+}
+
+.game-over-btn {
+  width: 50%;
+  margin-top: 20px;
 }
