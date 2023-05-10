@@ -1,15 +1,10 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background: rgb(27, 27, 27);
+  color: white;
+  font-family: "Roboto";
 }
 
 .game-container {
@@ -30,7 +25,7 @@ code {
 .tile {
   width: 40px;
   height: 40px;
-  border: 1px solid rgb(13, 73, 202);
+  border: 2px solid rgb(71 207 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,9 +40,42 @@ code {
 
 .keyboard {
   width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.game-over-btn {
-  width: 50%;
+.keyboard button {
+  width: 40px;
+  height: 60px;
+  padding: 10px;
+  background-color: rgb(56, 53, 53);
+  color: white;
+  border-radius: 5px;
+}
+.play-btn {
+  border: 1px solid rgb(11, 110, 175);
+  font-size: 30px;
+  color: white;
+  width: 350px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background-image: linear-gradient(to right, #1c3649, #3d4461, #730a8e);
+}
+
+.time-label {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.score-label {
+  margin-bottom: 20px;
+}
+
+.score {
+  color: rgb(88, 181, 244);
+}
+
+.message {
   margin-top: 20px;
 }
