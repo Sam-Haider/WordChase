@@ -211,11 +211,9 @@ export const Home = () => {
       {showInstructions && (
         <>
           <Instructions>
-            Firm as many 6-letter words as possible in 180 seconds
+            Form as many 6-letter words as possible in 180 seconds
           </Instructions>
-          <Instructions>
-            You and the computer alternate playing a letter
-          </Instructions>
+          <Instructions>You and the computer alternate turns</Instructions>
           <Instructions>Score 1 point for every completed word</Instructions>
           <Instructions>
             Lose 1 point if you play a letter that doesn't match a word
