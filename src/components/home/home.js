@@ -3,12 +3,22 @@ import styled from "styled-components";
 import { words } from "../../wordList";
 import { Keyboard } from "../keyboard/keyboard";
 
-const Instructions = styled.div`
+const ToggleInstructions = styled.button`
   background: none;
   border: 1px solid white;
   color: white;
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 200px;
+`;
+
+const Instructions = styled.div`
+  background: none;
+  color: white;
   font-size: 18px;
-  padding: 20px;
+  padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
   max-width: 310px;
@@ -101,6 +111,11 @@ export const Home = () => {
     }
   }, [gameOver, time]);
 
+  const [showInstructions, setShowInstructions] = useState(false);
+  const toggleInstructions = () => {
+    setShowInstructions(!showInstructions);
+  };
+
   return (
     <div className="game-container">
       <div className="time-label">
@@ -122,16 +137,30 @@ export const Home = () => {
       <button disabled={!gameOver} className="play-btn" onClick={handlePlay}>
         PLAY
       </button>
-      <Instructions>
-        <div>
-          <strong>Instructions: </strong>
-        </div>
-        Think of a 6 letter word that can be made from letters on the screen and
-        play the next letter. The computer goes first and you'll alternate
-        turns. But be careful, the computer might be thinking of a different
-        word than you 😏. 1 point for every word you finish, -1 point if you
-        play a letter that doesn't conform to a 6-letter word.
-      </Instructions>
+      <ToggleInstructions onClick={toggleInstructions}>
+        {showInstructions ? "Hide" : ""} Instructions
+      </ToggleInstructions>
+      {showInstructions && (
+        <>
+          <Instructions>
+            Your goal is to form as many 6-letter words as possible in 3 minutes
+          </Instructions>
+          <Instructions>
+            You and the computer alternate playing a letter
+          </Instructions>
+          <Instructions>Score 1 point for every completed word</Instructions>
+          <Instructions>
+            Lose 1 point for every letter you play that doesn't conform to a
+            word in our list
+          </Instructions>
+          <Instructions>
+            Keep it straightforward and pick words in their commonly used forms
+            - don't try plurals or modified tenses. We don't have many of those
+            in our list.
+          </Instructions>
+          <Instructions>Good luck!</Instructions>
+        </>
+      )}
     </div>
   );
 };
