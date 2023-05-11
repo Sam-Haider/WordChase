@@ -3,6 +3,12 @@ import styled from "styled-components";
 import { words } from "../../wordList";
 import { Keyboard } from "../keyboard/keyboard";
 
+const Title = styled.div`
+  margin-top: 10px;
+  font-size: 50px;
+  color: white;
+`;
+
 const ToggleInstructions = styled.button`
   background: none;
   border: 1px solid white;
@@ -22,6 +28,23 @@ const Instructions = styled.div`
   margin-top: 10px;
   border-radius: 5px;
   max-width: 310px;
+`;
+
+const PlayButton = styled.div`
+  border: 1px solid rgb(11, 110, 175);
+  font-size: 30px;
+  color: white;
+  width: 350px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background-image: linear-gradient(to right, #1c3649, #3d4461, #730a8e);
+  text-align: center;
+`;
+
+const Tile = styled.div`
+  ${({ isCorrectWord }) =>
+    isCorrectWord && `background-color: #83f79f; color: black`}
 `;
 
 const Timer = styled.span`
@@ -80,13 +103,17 @@ export const Home = () => {
     setScore(0);
   };
 
+  const [isCorrectWord, setIsCorrectWOrd] = useState(false);
+
   useEffect(() => {
     if (letters.length === 6 && letters[5] !== "") {
+      setIsCorrectWOrd(true);
       setTimeout(() => {
         setScore((prevScore) => prevScore + 1);
         const { newLetter } = updateWord([], gameWords);
         setLetters(newLetter);
-      }, 1000);
+        setIsCorrectWOrd(false);
+      }, 2000);
     }
   }, [letters]);
 
@@ -97,20 +124,25 @@ export const Home = () => {
     }
   }, [gameOver]);
 
-  const [time, setTime] = useState(60);
+  const [time, setTime] = useState(180);
 
   useEffect(() => {
+    let timerId;
     if (!gameOver) {
       time > 0 &&
-        setTimeout(() => {
+        (timerId = setTimeout(() => {
           setTime(time - 1);
-        }, 1000);
+        }, 1000));
     }
 
     if (time === 0) {
       setGameOver(true);
       setMessage("GAME OVER!!!");
     }
+
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [gameOver, time]);
 
   const [showInstructions, setShowInstructions] = useState(false);
@@ -120,6 +152,7 @@ export const Home = () => {
 
   return (
     <div className="game-container">
+      <Title>WordChase</Title>
       <div className="time-label">
         TIME REMAINING: <Timer className="time">{time}</Timer>
       </div>
@@ -127,18 +160,34 @@ export const Home = () => {
         SCORE: <span className="score">{score}</span>
       </div>
       <div className="tile-container">
-        <div className="tile">{letters[0]}</div>
-        <div className="tile">{letters[1]}</div>
-        <div className="tile">{letters[2]}</div>
-        <div className="tile">{letters[3]}</div>
-        <div className="tile">{letters[4]}</div>
-        <div className="tile">{letters[5]}</div>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[0]}
+        </Tile>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[1]}
+        </Tile>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[2]}
+        </Tile>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[3]}
+        </Tile>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[4]}
+        </Tile>
+        <Tile isCorrectWord={isCorrectWord} className="tile">
+          {letters[5]}
+        </Tile>
       </div>
       <div className="message">{message}</div>
       <Keyboard gameOver={gameOver} handleClick={handleClick} />
-      <button disabled={!gameOver} className="play-btn" onClick={handlePlay}>
+      <PlayButton
+        disabled={!gameOver}
+        className="play-btn"
+        onClick={handlePlay}
+      >
         PLAY
-      </button>
+      </PlayButton>
       <ToggleInstructions onClick={toggleInstructions}>
         {showInstructions ? "Hide" : ""} Instructions
       </ToggleInstructions>

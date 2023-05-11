@@ -29,6 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
 }
 
 .keyboard-container {
@@ -53,23 +54,15 @@ body {
   color: white;
   border-radius: 5px;
 }
-.play-btn {
-  border: 1px solid rgb(11, 110, 175);
-  font-size: 30px;
-  color: white;
-  width: 350px;
-  margin-top: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  background-image: linear-gradient(to right, #1c3649, #3d4461, #730a8e);
-}
 
 .time-label {
   margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 .score-label {
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .score {
