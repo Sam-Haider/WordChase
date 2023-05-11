@@ -26,7 +26,7 @@ const PlayButton = styled.div`
   border: 1px solid rgb(11, 110, 175);
   font-size: 30px;
   color: white;
-  width: 200px;
+  width: 275px;
   margin-top: 20px;
   border-radius: 5px;
   padding: 10px;
