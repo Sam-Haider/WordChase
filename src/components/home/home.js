@@ -42,7 +42,8 @@ const Instructions = styled.div`
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
-  max-width: 310px;
+  width: 310px;
+  text-align: left;
 `;
 
 const Tile = styled.div`
