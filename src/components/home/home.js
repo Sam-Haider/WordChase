@@ -153,6 +153,20 @@ export const Home = () => {
     setShowInstructions(!showInstructions);
   };
 
+  useEffect(() => {
+    if (showInstructions) {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [showInstructions]);
+
   return (
     <div className="game-container">
       <Title>WordChase</Title>
