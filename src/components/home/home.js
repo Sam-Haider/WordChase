@@ -81,12 +81,14 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    if (letters.length === 6) {
-      setScore(score + 1);
-      const { newLetter } = updateWord([], gameWords);
-      setLetters(newLetter);
+    if (letters.length === 6 && letters[5] !== "") {
+      setTimeout(() => {
+        setScore((prevScore) => prevScore + 1);
+        const { newLetter } = updateWord([], gameWords);
+        setLetters(newLetter);
+      }, 1000);
     }
-  });
+  }, [letters]);
 
   useEffect(() => {
     if (!gameOver) {
