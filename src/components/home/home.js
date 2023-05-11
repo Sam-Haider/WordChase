@@ -6,7 +6,7 @@ import { Keyboard } from "../keyboard/keyboard";
 
 const Title = styled.div`
   margin-top: 10px;
-  font-size: 50px;
+  font-size: 40px;
   color: white;
 `;
 
@@ -19,6 +19,20 @@ const ToggleInstructions = styled.button`
   margin-top: 10px;
   border-radius: 5px;
   width: 200px;
+  box-sizing: border-box;
+`;
+
+const PlayButton = styled.div`
+  border: 1px solid rgb(11, 110, 175);
+  font-size: 30px;
+  color: white;
+  width: 200px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background-image: linear-gradient(to right, #1c3649, #3d4461, #730a8e);
+  text-align: center;
+  box-sizing: border-box;
 `;
 
 const Instructions = styled.div`
@@ -29,18 +43,6 @@ const Instructions = styled.div`
   margin-top: 10px;
   border-radius: 5px;
   max-width: 310px;
-`;
-
-const PlayButton = styled.div`
-  border: 1px solid rgb(11, 110, 175);
-  font-size: 30px;
-  color: white;
-  width: 350px;
-  margin-top: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  background-image: linear-gradient(to right, #1c3649, #3d4461, #730a8e);
-  text-align: center;
 `;
 
 const Tile = styled.div`
