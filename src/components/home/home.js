@@ -214,7 +214,9 @@ export const Home = () => {
           <Instructions>
             Form as many 6-letter words as possible in 180 seconds
           </Instructions>
-          <Instructions>You and the computer alternate turns</Instructions>
+          <Instructions>
+            The computer plays the 1st, 3rd, and 5th letters. You play the rest.
+          </Instructions>
           <Instructions>Score 1 point for every completed word</Instructions>
           <Instructions>
             Lose 1 point if you play a letter that doesn't match a word
