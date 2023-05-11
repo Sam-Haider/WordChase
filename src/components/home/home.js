@@ -211,20 +211,14 @@ export const Home = () => {
       {showInstructions && (
         <>
           <Instructions>
-            Your goal is to form as many 6-letter words as possible in 3 minutes
+            Firm as many 6-letter words as possible in 180 seconds
           </Instructions>
           <Instructions>
             You and the computer alternate playing a letter
           </Instructions>
           <Instructions>Score 1 point for every completed word</Instructions>
           <Instructions>
-            Lose 1 point for every letter you play that doesn't conform to a
-            word in our list
-          </Instructions>
-          <Instructions>
-            Keep it straightforward and pick words in their commonly used forms
-            - don't try plurals or modified tenses. We don't have many of those
-            in our list.
+            Lose 1 point if you play a letter that doesn't match a word
           </Instructions>
           <Instructions>Good luck!</Instructions>
         </>
